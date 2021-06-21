@@ -1,4 +1,4 @@
-from typing         import Optional
+from typing         import Optional, List
 
 from fastapi        import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
@@ -13,7 +13,7 @@ router = APIRouter(
 get_db = database.get_db
 
 
-@router.get("/{component_number}", status_code=status.HTTP_200_OK, response_model=schemas.TextOut)
+@router.get("/{component_number}", status_code=status.HTTP_200_OK, response_model=List[schemas.TextOut])
 def get_texts(component_number: int, lan: Optional[schemas.LanguageName] = None, db: Session = Depends(get_db)):
 
     text_languages = { 

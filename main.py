@@ -1,13 +1,24 @@
-from fastapi             import FastAPI
-from fastapi.staticfiles import StaticFiles
+from fastapi                 import FastAPI
+from fastapi.staticfiles     import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 
-from routers             import texts, images, users, auth
+from routers                 import texts, images, users, auth
 import models, database
 
 
 models.Base.metadata.create_all(database.engine)
 
 app = FastAPI()
+
+origins = ['*']
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=['*'],
+    allow_headers=['*'],
+)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 

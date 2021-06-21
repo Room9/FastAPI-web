@@ -1,7 +1,10 @@
+from typing         import List
+
 from fastapi        import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from models         import Position, Image
+from my_settings    import HOST
 import database, schemas
 
 router = APIRouter(
@@ -11,7 +14,7 @@ router = APIRouter(
 get_db = database.get_db
 
 
-@router.get("/{component_number}", status_code=status.HTTP_200_OK, response_model=schemas.ImageOut)
+@router.get("/{component_number}", status_code=status.HTTP_200_OK, response_model=List[schemas.ImageOut])
 def get_images(component_number: int, db: Session = Depends(get_db)):
     contents = db.query(Image).join(Position).filter(Position.component_number==component_number).all()
     
@@ -23,7 +26,7 @@ def get_images(component_number: int, db: Session = Depends(get_db)):
 
     results = [
             {
-                'directory'      : content.directory,
+                'directory'      : HOST + "/static" + content.directory,
                 'section_number' : content.positions.section_number
             } for content in contents ]
 
