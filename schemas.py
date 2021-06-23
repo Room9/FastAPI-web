@@ -7,13 +7,24 @@ class LanguageName(str, Enum):
     english = "eng"
 
 class TextOut(BaseModel):
-    text : str
+    text           : str
     section_number : int
     class Config():
         orm_mode = True
 
 class ImageOut(BaseModel):
-    directory : str
+    directory      : str
     section_number : int
     class Config():
         orm_mode = True
+
+class UserBase(BaseModel):
+    email : str
+    class Config():
+        orm_mode = True
+
+class UserIn(UserBase):
+    password : str
+
+class UserOut(UserBase):
+    pass

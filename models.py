@@ -1,6 +1,6 @@
 import datetime
 
-from sqlalchemy            import Column, Integer, String, ForeignKey, DateTime, Numeric
+from sqlalchemy            import Column, Integer, String, ForeignKey, DateTime, Numeric, Boolean
 from sqlalchemy.orm        import relationship
 from sqlalchemy.sql.schema import ForeignKey
 
@@ -48,6 +48,7 @@ class User(Base, BaseMixin):
     __tablename__ = 'users'
     email         = Column(String(length=300))
     password      = Column(String(2000))
+    is_active     = Column(Boolean)
 
 class Membership(Base, BaseMixin):
     __tablename__ = 'memberships'
