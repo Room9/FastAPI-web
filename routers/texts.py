@@ -22,7 +22,7 @@ def get_texts(component_number: int, lan: Optional[schemas.LanguageName] = None,
         'eng' : db.query(EnglishText)
     }
 
-    contents = text_languages[lan].join(Position).filter(Position.component_number==component_number).all()
+    contents = text_languages[lan].join(Position).filter(Position.component_number==component_number).order_by(Position.id).all()
 
     if not contents:
         raise HTTPException(
