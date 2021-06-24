@@ -1,46 +1,49 @@
-# import smtplib
-# from email.mime.text import MIMEText
-# 
-# @app.get("/mailtest")
-# def mail_test():
-#     s = smtplib.SMTP('smtp.gmail.com', 587)
-#     s.starttls()
-#     s.login('miiny3524@gmail.com', 'grdvdxtgefrxyrxd')
-# 
-#     msg = MIMEText('내용 : 본문내용 테스트입니다.')
-#     msg['Subject'] = '제목 : 메일 보내기 테스트입니다.'
-# 
-#     s.sendmail("miiny3524@gmail.com", "yangdaz3@gmail.com", msg.as_string())
-#     s.quit()
-# 
-#     return "okay"
-
+from my_settings import EMAIL
 
 import smtplib
-from email.mime.text      import MIMEText
-from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
-username = "conpages@naver.com"
-password = "ekfhal251714!"
-mail_from = username
-mail_to = "yangdaz3@gmail.com"
-mail_subject = "Test Subject"
-mail_body = "This is a test message"
 
-def mail_test():
-    mimemsg = MIMEMultipart()
-    mimemsg['From'] = mail_from
-    mimemsg['To'] = mail_to
-    mimemsg['Subject'] = mail_subject
-    mimemsg.attach(MIMEText(mail_body, 'plain'))
+def google_mail(send_to: str):
+    s = smtplib.SMTP(EMAIL['HOST'], EMAIL['PORT'])
+    s.starttls()
+    s.login(EMAIL['HOST_USER'], EMAIL['HOST_PW'])
 
-    connection = smtplib.SMTP(host='smtp.office365.com', port=587)
-    connection.starttls()
-    connection.login(username, password)
-    connection.send_message(mimemsg)
-    connection.quit()
+    msg            = MIMEText('내용 : 본문내용 테스트입니다.')
+    msg['Subject'] = '제목 : 메일 보내기 테스트입니다.'
+    msg['To']      = send_to
 
-    return "okay"
+    s.sendmail(EMAIL['HOST_USER'], send_to, msg.as_string())
+    s.quit()
+
+    return
+
+
+# import smtplib
+# from email.mime.text      import MIMEText
+# from email.mime.multipart import MIMEMultipart
+# 
+# username = "conpages@naver.com"
+# password = "ekfhal251714!"
+# mail_from = username
+# mail_to = "yangdaz3@gmail.com"
+# mail_subject = "Test Subject"
+# mail_body = "This is a test message"
+# 
+# def mail_test():
+#     mimemsg = MIMEMultipart()
+#     mimemsg['From'] = mail_from
+#     mimemsg['To'] = mail_to
+#     mimemsg['Subject'] = mail_subject
+#     mimemsg.attach(MIMEText(mail_body, 'plain'))
+# 
+#     connection = smtplib.SMTP(host='smtp.office365.com', port=587)
+#     connection.starttls()
+#     connection.login(username, password)
+#     connection.send_message(mimemsg)
+#     connection.quit()
+# 
+#     return "okay"
  
 # import smtplib
 # from email.mime.multipart import MIMEMultipart

@@ -3,10 +3,7 @@ from fastapi.staticfiles     import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 
 from routers                 import texts, images, users, auth
-import models, database
 
-
-models.Base.metadata.create_all(database.engine)
 
 app = FastAPI()
 

@@ -1,8 +1,9 @@
 from fastapi        import APIRouter, status, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from util           import hashing, validation
-import database, schemas, models
+from util           import hashing, validation, auth_email
+from models         import User
+import database, schemas
 
 router = APIRouter(
     prefix = "/users",
@@ -19,14 +20,20 @@ def signup(data: schemas.UserIn, db: Session = Depends(get_db)):
     if not validation.validate_password(data.password):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="invalid_password")
 
-    if not validation.validate_duplication(data.email):
+    if not validation.validate_duplication(data.email, db):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="existing_user")
 
+    inactive_user = db.query(User).filter(User.email==data.email)
+    if inactive_user.first():
+        inactive_user.delete(synchronize_session=False)
 
-    # delete inactive user
+    new_user = User(email=data.email, password=hashing.bcrypt(data.password), is_active=False)
+    db.add(new_user)
 
-    user = models.User(email=data.email, password=hashing.bcrypt(data.password))
+    db.commit()
+    db.refresh(new_user)
 
-    print(user.password)
-    return user 
+    auth_email.google_mail(new_user.email)
+
+    return new_user
 

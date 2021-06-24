@@ -1,0 +1,237 @@
+{
+	"english_text": [
+		{
+			"id": 1,
+			"position_id": 1,
+			"text": "a"
+		},
+		{
+			"id": 2,
+			"position_id": 2,
+			"text": "b"
+		},
+		{
+			"id": 3,
+			"position_id": 3,
+			"text": "c"
+		},
+		{
+			"id": 4,
+			"position_id": 4,
+			"text": "d"
+		},
+		{
+			"id": 5,
+			"position_id": 5,
+			"text": "e"
+		}
+	],
+    "korean_text": [
+		{
+			"id": 1,
+			"position_id": 1,
+			"text": "The Easiest Way to Automate<br />Investment Workflow"
+		},
+		{
+			"id": 2,
+			"position_id": 2,
+			"text": "식별자 마스터 생성부터 포트폴리오<br />Attribution까지 각 과정을<br />Prism이 함께합니다."
+		},
+		{
+			"id": 3,
+			"position_id": 11,
+			"text": "복잡한 데이터 전처리는 No!"
+		},
+		{
+			"id": 4,
+			"position_id": 12,
+			"text": "다양한 금융 데이터 벤더들의 데이터를<br />매핑, 표준화, 조정을 자동으로 하여 걱정 없이<br />데이터를 사용하실 수 있습니다."
+		},
+		{
+			"id": 5,
+			"position_id": 13,
+			"text": "손쉬운 데이터 처리/분석"
+		},
+		{
+			"id": 6,
+			"position_id": 14,
+			"text": "플랫폼에 구현되어있는 함수 및 모델들로 Raw데이터를<br />손쉽게 정제된 Investment-ready 데이터로 만들 수 있고<br />백테스팅, 실험까지 진행할 수 있습니다."
+		},
+		{
+			"id": 7,
+			"position_id": 17,
+			"text": "다양한 채널"
+		},
+		{
+			"id": 8,
+			"position_id": 18,
+			"text": "API, Database, Flat-file, Web 등<br />다양한 채널을 통해<br />정제된 데이터를 받아 보실 수 있습니다."
+		}
+    ],
+    "positions": [
+        {
+            "id": 1,
+            "component_number": 1,
+            "section_number": 1
+        },
+        {
+            "id": 2,
+            "component_number": 1,
+            "section_number": 2
+        },
+        {
+            "id": 3,
+            "component_number": 1,
+            "section_number": 3
+        },
+        {
+            "id": 4,
+            "component_number": 1,
+            "section_number": 4
+        },
+        {
+            "id": 5,
+            "component_number": 1,
+            "section_number": 5
+        },
+        {
+            "id": 6,
+            "component_number": 1,
+            "section_number": 6
+        },
+        {
+            "id": 7,
+            "component_number": 1,
+            "section_number": 7
+        },
+        {
+            "id": 8,
+            "component_number": 1,
+            "section_number": 8
+        },
+        {
+            "id": 9,
+            "component_number": 1,
+            "section_number": 9
+        },
+        {
+            "id": 10,
+            "component_number": 2,
+            "section_number": 1
+        },
+        {
+            "id": 11,
+            "component_number": 2,
+            "section_number": 2
+        },
+        {
+            "id": 12,
+            "component_number": 2,
+            "section_number": 3
+        },
+        {
+            "id": 13,
+            "component_number": 2,
+            "section_number": 4
+        },
+        {
+            "id": 14,
+            "component_number": 2,
+            "section_number": 5
+        },
+        {
+            "id": 15,
+            "component_number": 2,
+            "section_number": 6
+        },
+        {
+            "id": 16,
+            "component_number": 2,
+            "section_number": 7
+        },
+        {
+            "id": 17,
+            "component_number": 2,
+            "section_number": 8
+        },
+        {
+            "id": 18,
+            "component_number": 2,
+            "section_number": 9
+        }
+    ],
+    "images": [
+        {
+            "id": 1,
+            "position_id": 1,
+            "directory": "/left_article1.png"
+        },
+        {
+            "id": 2,
+            "position_id": 2,
+            "directory": "/left_article2.png"
+        },
+        {
+            "id": 3,
+            "position_id": 3,
+            "directory": "/left_article3.png"
+        },
+        {
+            "id": 4,
+            "position_id": 4,
+            "directory": "/main_img_base.jpg"
+        },
+        {
+            "id": 5,
+            "position_id": 5,
+            "directory": "/main_left_img.png"
+        },
+        {
+            "id": 6,
+            "position_id": 6,
+            "directory": "/main_center_img.png"
+        },
+        {
+            "id": 7,
+            "position_id": 7,
+            "directory": "/main_right_img.png"
+        },
+        {
+            "id": 8,
+            "position_id": 8,
+            "directory": "/right_article1.png"
+        },
+        {
+            "id": 9,
+            "position_id": 9,
+            "directory": "/center_article1.png"
+        }
+    ],
+    "memberships": [
+        {
+            "id": 1,
+            "name": "standard",
+            "price": 10000
+        },
+        {
+            "id": 2,
+            "name": "premium",
+            "price": 20000
+        },
+        {
+            "id": 3,
+            "name": "super",
+            "price": 30000
+        }
+    ],
+    "status": [
+        {
+            "id": 1,
+            "name": "activated"
+        },
+        {
+            "id": 2,
+            "name": "deactivated"
+        }
+    ]
+}

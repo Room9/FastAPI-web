@@ -18,24 +18,18 @@ class Position(Base, BaseMixin):
     section_number   = Column(Integer)
     description      = Column(String(length=200), nullable=True)
     name             = Column(String(length=50), nullable=True)
-    texts            = relationship('Text', back_populates='positions')
+    korean_texts     = relationship('KoreanText', backref='positions')
+    english_texts    = relationship('EnglishText', backref='positions')
     images           = relationship('Image', back_populates='positions')
-
-class Text(Base, BaseMixin):
-    __tablename__ = 'texts'
-    position_id   = Column(Integer, ForeignKey('positions.id'))
-    positions     = relationship('Position', back_populates='texts')
-    korean_texts  = relationship('KoreanText', backref='texts')
-    english_texts = relationship('EnglishText', backref='texts')
 
 class KoreanText(Base, BaseMixin):
     __tablename__ = 'korean_texts'
-    text_id       = Column(Integer, ForeignKey('texts.id'))
+    position_id   = Column(Integer, ForeignKey('positions.id'))
     text          = Column(String(1000))
 
 class EnglishText(Base, BaseMixin):
     __tablename__ = 'english_texts'
-    text_id       = Column(Integer, ForeignKey('texts.id'))
+    position_id   = Column(Integer, ForeignKey('positions.id'))
     text          = Column(String(1000))
 
 class Image(Base, BaseMixin):

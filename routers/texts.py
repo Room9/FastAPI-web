@@ -3,7 +3,7 @@ from typing         import Optional, List
 from fastapi        import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from models         import Position, Text, KoreanText, EnglishText
+from models         import Position, KoreanText, EnglishText
 import database, schemas
 
 router = APIRouter(
@@ -22,7 +22,7 @@ def get_texts(component_number: int, lan: Optional[schemas.LanguageName] = None,
         'eng' : db.query(EnglishText)
     }
 
-    contents = text_languages[lan].join(Text).join(Position).filter(Position.component_number==component_number).all()
+    contents = text_languages[lan].join(Position).filter(Position.component_number==component_number).all()
 
     if not contents:
         raise HTTPException(
@@ -33,7 +33,7 @@ def get_texts(component_number: int, lan: Optional[schemas.LanguageName] = None,
     results = [
             {
                 'text'           : content.text,
-                'section_number' : content.texts.positions.section_number
+                'section_number' : content.positions.section_number
             } for content in contents ]
 
     return results 
