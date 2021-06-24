@@ -4,7 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from routers                 import texts, images, users, auth
 
-
 app = FastAPI()
 
 origins = ['*']

@@ -28,3 +28,6 @@ class UserIn(UserBase):
 
 class UserOut(UserBase):
     pass
+
+class TokenData(BaseModel):
+    email : str 

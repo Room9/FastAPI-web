@@ -1,7 +1,7 @@
 from fastapi        import APIRouter, status, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from util           import hashing, validation, auth_email
+from util           import hashing, validation, auth_email, oauth2
 from models         import User
 import database, schemas
 
@@ -10,6 +10,7 @@ router = APIRouter(
     tags   = ["users"]
 )
 get_db = database.get_db
+
 
 @router.post("/signup", status_code=status.HTTP_201_CREATED, response_model=schemas.UserOut)
 def signup(data: schemas.UserIn, db: Session = Depends(get_db)):
@@ -33,7 +34,14 @@ def signup(data: schemas.UserIn, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_user)
 
-    auth_email.google_mail(new_user.email)
+    auth_email.google_mail(new_user)
 
     return new_user
+
+@router.get('/me', response_model=schemas.UserOut)
+def get_person(db: Session = Depends(get_db), current_user: schemas.TokenData = Depends(oauth2.get_current_user)):
+
+    user = db.query(User).filter(User.email == current_user.email).first()
+
+    return user
 
