@@ -30,4 +30,4 @@ class UserOut(UserBase):
     pass
 
 class TokenData(BaseModel):
-    email : str 
+    encrypted_id : str 

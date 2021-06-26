@@ -36,7 +36,8 @@ def login(request: OAuth2PasswordRequestForm = Depends(), db:Session= Depends(ge
                detail="inactive user"
         )
    
-    data         = {"sub": user.email}
+    user_id      = aes256.AESCipher(bytes(SECRET['AES_KEY'])).encrypt(str(user.id)).decode('utf-8')
+    data         = {"sub": user_id}
     access_token = tokens.create_token(data)
 
     return {"access_token": access_token, "token_type": "bearer"}

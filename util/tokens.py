@@ -18,12 +18,12 @@ def create_token(data: dict, minutes: Optional[int] = None):
 def verify_token(token:str, credentials_exception):
     try:
         payload = jwt.decode(token, SECRET['KEY'], algorithms=SECRET['ALGORITHM'])
-        email = payload.get("sub")
+        encrypted_id = payload.get("sub")
 
-        if email is None:
+        if encrypted_id is None:
             raise credentials_exception
 
-        return schemas.TokenData(email=email)
+        return schemas.TokenData(encrypted_id=encrypted_id)
 
     except JWTError:
         raise credentials_exception

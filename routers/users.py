@@ -1,8 +1,9 @@
 from fastapi        import APIRouter, status, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from util           import hashing, validation, auth_email, oauth2
+from util           import hashing, validation, auth_email, oauth2, aes256
 from models         import User
+from my_settings    import SECRET
 import database, schemas
 
 router = APIRouter(
@@ -41,7 +42,8 @@ def signup(data: schemas.UserIn, db: Session = Depends(get_db)):
 @router.get('/me', response_model=schemas.UserOut)
 def get_person(db: Session = Depends(get_db), current_user: schemas.TokenData = Depends(oauth2.get_current_user)):
 
-    user = db.query(User).filter(User.email == current_user.email).first()
+    user_id = aes256.AESCipher(bytes(SECRET['AES_KEY'])).decrypt(current_user.encrypted_id).decode('utf-8')
+    user = db.query(User).filter(User.id == user_id).first()
 
     return user
 
